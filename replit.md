@@ -25,3 +25,25 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+### Aprende Coreano (`artifacts/korean-learn`)
+- **Type**: React + Vite (react-vite), served at `/`
+- **Purpose**: App web educativa para aprender coreano desde nivel 0
+- **Storage**: 100% localStorage — sin backend ni base de datos
+- **Features**:
+  - 4 módulos progresivos (Hangul, Sílabas, Vocabulario, Frases)
+  - Ejercicios de selección múltiple y emparejar
+  - Pronunciación vía Web Speech API (sin backend)
+  - Sistema de progreso con XP y racha de días
+  - Modo repaso (flashcards)
+  - Guía inicial "¿Qué es el coreano?"
+
+### API Server (`artifacts/api-server`)
+- **Type**: Express 5 REST API
+- **Paths**: `/api`
+
+### Canvas (`artifacts/mockup-sandbox`)
+- **Type**: Design/Mockup sandbox
+- **Paths**: `/__mockup`
