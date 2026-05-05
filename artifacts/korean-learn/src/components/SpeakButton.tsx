@@ -1,4 +1,4 @@
-// Botón para pronunciar texto en coreano usando la API del navegador
+// Botón de pronunciación coreana — usa la API del navegador
 import { useState } from "react";
 import { speak, isSpeechAvailable } from "@/lib/speech";
 
@@ -18,17 +18,20 @@ export function SpeakButton({ text, size = "md" }: SpeakButtonProps) {
     setTimeout(() => setSpeaking(false), 1200);
   }
 
-  const sizeClass = size === "sm" ? "text-lg p-1.5" : size === "lg" ? "text-3xl p-3" : "text-xl p-2";
+  const sizeClass =
+    size === "sm" ? "text-base p-1.5 w-7 h-7" :
+    size === "lg" ? "text-2xl p-3 w-11 h-11" :
+    "text-lg p-2 w-9 h-9";
 
   return (
     <button
       onClick={handleSpeak}
       title="Escuchar pronunciación"
-      className={`${sizeClass} rounded-full transition-all duration-150 ${
-        speaking
-          ? "bg-purple-100 text-purple-600 scale-110"
-          : "bg-gray-100 hover:bg-purple-100 hover:text-purple-600 text-gray-500 active:scale-95"
-      }`}
+      className={`${sizeClass} rounded-full flex items-center justify-center transition-all duration-150 flex-shrink-0
+        ${speaking
+          ? "bg-[#0D1B4B]/10 text-[#0D1B4B] scale-110"
+          : "bg-gray-100 hover:bg-[#0D1B4B]/10 hover:text-[#0D1B4B] text-gray-400 active:scale-95"
+        }`}
     >
       {speaking ? "🔊" : "🔈"}
     </button>

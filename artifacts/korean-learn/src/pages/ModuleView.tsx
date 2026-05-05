@@ -1,62 +1,73 @@
 // ============================================================
-// Página: Vista del Módulo — lista de lecciones
+// Página: Vista del Módulo — estética coreana premium
 // ============================================================
 import { useLocation, useParams } from "wouter";
-import { MODULES, MODULE_COLORS } from "@/data/modules";
+import { MODULES } from "@/data/modules";
 import { useProgress } from "@/hooks/useProgress";
-import { ProgressBar } from "@/components/ProgressBar";
+import logoUrl from "@/assets/logo.png";
+
+const MODULE_STYLES = [
+  { gradient: "from-[#0D1B4B] to-[#1a2d6b]", light: "bg-[#eef1ff]", text: "text-[#0D1B4B]", border: "border-[#0D1B4B]/20", barColor: "#0D1B4B" },
+  { gradient: "from-[#C41E3A] to-[#a51830]", light: "bg-[#fff0f2]", text: "text-[#C41E3A]", border: "border-[#C41E3A]/20", barColor: "#C41E3A" },
+  { gradient: "from-[#1a6b3a] to-[#145c30]", light: "bg-[#f0fdf4]", text: "text-[#1a6b3a]", border: "border-[#1a6b3a]/20", barColor: "#1a6b3a" },
+  { gradient: "from-[#B8910A] to-[#9a7808]", light: "bg-[#fffbeb]", text: "text-[#B8910A]", border: "border-[#B8910A]/20", barColor: "#B8910A" },
+];
 
 export function ModuleView() {
   const { id } = useParams<{ id: string }>();
   const [, navigate] = useLocation();
   const { progress } = useProgress();
 
-  const mod = MODULES.find((m) => m.id === id);
+  const modIdx = MODULES.findIndex((m) => m.id === id);
+  const mod = MODULES[modIdx];
   if (!mod) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#FAF7F2" }}>
         <div className="text-center">
-          <p className="text-xl font-bold">Módulo no encontrado</p>
-          <button onClick={() => navigate("/")} className="mt-4 text-purple-600 underline">
-            Volver al inicio
-          </button>
+          <p className="text-xl font-bold text-[#0D1B4B]">Módulo no encontrado</p>
+          <button onClick={() => navigate("/")} className="mt-4 text-[#C41E3A] underline">Volver al inicio</button>
         </div>
       </div>
     );
   }
 
-  const colors = MODULE_COLORS[mod.color];
+  const style = MODULE_STYLES[modIdx % MODULE_STYLES.length];
   const modProgress = progress.modules[mod.id];
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        {/* Back */}
-        <button
-          onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
-        >
-          ← Volver al inicio
-        </button>
+    <div className="min-h-screen" style={{ background: "#FAF7F2" }}>
 
-        {/* Module header */}
-        <div className={`${colors.light} border-2 ${colors.border} rounded-3xl p-6 mb-6`}>
-          <div className="flex items-center gap-4 mb-3">
-            <div className={`w-14 h-14 ${colors.bg} rounded-2xl flex items-center justify-center text-3xl`}>
+      {/* Header */}
+      <div className="korean-header text-white pt-8 pb-10 px-4">
+        <div className="max-w-2xl mx-auto">
+          <button
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 text-white/60 hover:text-white mb-5 transition-colors text-sm font-medium"
+          >
+            ← Inicio
+          </button>
+          <div className="flex items-center gap-4">
+            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${style.gradient} flex items-center justify-center text-3xl shadow-lg border-2 border-white/20`}>
               {mod.emoji}
             </div>
             <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              <span className={`module-badge ${style.light} ${style.text} mb-2 inline-block`}>
                 Módulo {mod.number}
-              </p>
-              <h1 className="text-xl font-bold text-foreground">{mod.title}</h1>
+              </span>
+              <h1 className="text-xl font-bold text-white">{mod.title}</h1>
+              <p className="text-white/60 text-sm mt-0.5">{mod.description}</p>
             </div>
           </div>
-          <p className="text-muted-foreground">{mod.description}</p>
+        </div>
+      </div>
+      <div className="dancheong-divider" />
+
+      <div className="max-w-2xl mx-auto px-4 py-6">
+        <div className="flex items-center gap-3 mb-4">
+          <h2 className="text-base font-bold text-[#0D1B4B] uppercase tracking-widest">Lecciones</h2>
+          <div className="flex-1 h-px bg-[#0D1B4B]/10" />
         </div>
 
-        {/* Lessons list */}
-        <h2 className="text-lg font-bold text-foreground mb-3">Lecciones</h2>
         <div className="space-y-3">
           {mod.lessons.map((lesson, idx) => {
             const lp = modProgress?.lessons[lesson.id];
@@ -70,40 +81,49 @@ export function ModuleView() {
                 key={lesson.id}
                 onClick={() => !isLocked && navigate(`/module/${mod.id}/lesson/${lesson.id}`)}
                 disabled={isLocked}
-                className={`w-full bg-white rounded-2xl p-5 border-2 text-left transition-all
-                  ${isLocked
-                    ? "border-border opacity-50 cursor-not-allowed"
-                    : `${colors.border} card-hover shadow-sm hover:shadow-md`
-                  }`}
+                className={`w-full k-card p-5 text-left border-2 transition-all
+                  ${isLocked ? "opacity-50 cursor-not-allowed border-gray-100" : `${style.border} group`}`}
               >
                 <div className="flex items-center gap-4">
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0
-                      ${isCompleted ? "bg-emerald-100" : isLocked ? "bg-gray-100" : `${colors.light}`}`}
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0 font-bold
+                      ${isCompleted
+                        ? "bg-emerald-100 text-emerald-600"
+                        : isLocked
+                        ? "bg-gray-100 text-gray-400"
+                        : `${style.light} ${style.text}`
+                      }`}
                   >
-                    {isLocked ? "🔒" : isCompleted ? "✅" : `${idx + 1}`}
+                    {isLocked ? "🔒" : isCompleted ? "✅" : idx + 1}
                   </div>
+
                   <div className="flex-1">
-                    <p className="font-semibold text-foreground">{lesson.title}</p>
+                    <p className="font-bold text-[#0D1B4B]">{lesson.title}</p>
                     {lesson.subtitle && (
-                      <p className="text-sm text-muted-foreground mt-0.5 line-clamp-1">{lesson.subtitle}</p>
+                      <p className="text-sm text-gray-500 mt-0.5 line-clamp-1">{lesson.subtitle}</p>
                     )}
                     {isCompleted && score !== undefined && (
                       <div className="mt-2">
-                        <ProgressBar percentage={score} color={colors.bg} height="h-1.5" />
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Puntuación: {score}% · {attempts} intento{attempts !== 1 ? "s" : ""}
+                        <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{ width: `${score}%`, background: style.barColor }}
+                          />
+                        </div>
+                        <p className="text-xs text-gray-400 mt-1">
+                          {score}% · {attempts} intento{attempts !== 1 ? "s" : ""}
                         </p>
                       </div>
                     )}
                     {!isCompleted && attempts > 0 && (
-                      <p className="text-xs text-orange-500 mt-1 font-medium">
+                      <p className="text-xs text-[#C41E3A] mt-1 font-medium">
                         Intenta de nuevo para completar ({attempts} intento{attempts !== 1 ? "s" : ""})
                       </p>
                     )}
                   </div>
+
                   {!isLocked && (
-                    <span className={`${colors.text} text-lg flex-shrink-0`}>→</span>
+                    <span className="text-gray-300 group-hover:text-[#0D1B4B] transition-colors text-lg flex-shrink-0">→</span>
                   )}
                 </div>
               </button>
@@ -111,12 +131,15 @@ export function ModuleView() {
           })}
         </div>
 
-        {/* Module completed banner */}
+        {/* Módulo completado */}
         {modProgress?.completed && (
-          <div className="mt-6 bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-5 text-center pop-in">
+          <div
+            className="mt-6 rounded-2xl p-6 text-center bounce-in text-white"
+            style={{ background: "linear-gradient(135deg, #1a6b3a, #145c30)" }}
+          >
             <div className="text-4xl mb-2">🏆</div>
-            <p className="font-bold text-emerald-700 text-lg">¡Módulo completado!</p>
-            <p className="text-emerald-600 text-sm mt-1">Has terminado todas las lecciones de este módulo.</p>
+            <p className="font-bold text-lg">¡Módulo completado!</p>
+            <p className="text-white/70 text-sm mt-1">Has terminado todas las lecciones de este módulo.</p>
           </div>
         )}
       </div>

@@ -1,23 +1,30 @@
 // ============================================================
-// Página: Vista de Lección — contenido + ejercicios
+// Página: Vista de Lección — estética coreana premium
 // ============================================================
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
-import { MODULES, MODULE_COLORS } from "@/data/modules";
+import { MODULES } from "@/data/modules";
 import { useProgress } from "@/hooks/useProgress";
 import { MultipleChoice } from "@/components/MultipleChoice";
 import { MatchingGame } from "@/components/MatchingGame";
 import { SpeakButton } from "@/components/SpeakButton";
-import { ProgressBar } from "@/components/ProgressBar";
 
 type Phase = "learn" | "exercises" | "result";
+
+const MODULE_STYLES = [
+  { gradient: "from-[#0D1B4B] to-[#1a2d6b]", light: "bg-[#eef1ff]", text: "text-[#0D1B4B]", barColor: "#0D1B4B", btn: "bg-[#0D1B4B] hover:bg-[#1a2d6b]" },
+  { gradient: "from-[#C41E3A] to-[#a51830]", light: "bg-[#fff0f2]", text: "text-[#C41E3A]", barColor: "#C41E3A", btn: "bg-[#C41E3A] hover:bg-[#a51830]" },
+  { gradient: "from-[#1a6b3a] to-[#145c30]", light: "bg-[#f0fdf4]", text: "text-[#1a6b3a]", barColor: "#1a6b3a", btn: "bg-[#1a6b3a] hover:bg-[#145c30]" },
+  { gradient: "from-[#B8910A] to-[#9a7808]", light: "bg-[#fffbeb]", text: "text-[#B8910A]", barColor: "#B8910A", btn: "bg-[#B8910A] hover:bg-[#9a7808]" },
+];
 
 export function LessonView() {
   const { moduleId, lessonId } = useParams<{ moduleId: string; lessonId: string }>();
   const [, navigate] = useLocation();
   const { updateLessonProgress, getLessonProgress } = useProgress();
 
-  const mod = MODULES.find((m) => m.id === moduleId);
+  const modIdx = MODULES.findIndex((m) => m.id === moduleId);
+  const mod = MODULES[modIdx];
   const lesson = mod?.lessons.find((l) => l.id === lessonId);
 
   const [phase, setPhase] = useState<Phase>("learn");
@@ -29,66 +36,74 @@ export function LessonView() {
 
   if (!mod || !lesson) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#FAF7F2" }}>
         <div className="text-center">
-          <p className="text-xl font-bold">Lección no encontrada</p>
-          <button onClick={() => navigate("/")} className="mt-4 text-purple-600 underline">Volver</button>
+          <p className="text-xl font-bold text-[#0D1B4B]">Lección no encontrada</p>
+          <button onClick={() => navigate("/")} className="mt-4 text-[#C41E3A] underline">Volver</button>
         </div>
       </div>
     );
   }
 
-  const colors = MODULE_COLORS[mod.color];
+  const style = MODULE_STYLES[modIdx % MODULE_STYLES.length];
   const exercises = lesson.exercises;
   const currentExercise = exercises[exerciseIdx];
-  const prevProgress = getLessonProgress(mod.id, lesson.id);
 
-  // ---- LEARN PHASE ----
+  // ── LEARN PHASE ──
   if (phase === "learn") {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="max-w-2xl mx-auto px-4 py-8">
-          <button
-            onClick={() => navigate(`/module/${mod.id}`)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
-          >
-            ← {mod.title}
-          </button>
-
-          <div className={`${colors.light} border-2 ${colors.border} rounded-3xl p-5 mb-6`}>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
-              Módulo {mod.number} · Lección
-            </p>
-            <h1 className="text-2xl font-bold text-foreground">{lesson.title}</h1>
-            {lesson.subtitle && (
-              <p className="text-muted-foreground mt-1 text-sm">{lesson.subtitle}</p>
-            )}
+      <div className="min-h-screen" style={{ background: "#FAF7F2" }}>
+        {/* Header */}
+        <div className="korean-header text-white pt-8 pb-10 px-4">
+          <div className="max-w-2xl mx-auto">
+            <button
+              onClick={() => navigate(`/module/${mod.id}`)}
+              className="flex items-center gap-2 text-white/60 hover:text-white mb-5 transition-colors text-sm font-medium"
+            >
+              ← {mod.title}
+            </button>
+            <div className="flex items-center gap-3">
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${style.gradient} flex items-center justify-center text-2xl border-2 border-white/20`}>
+                {mod.emoji}
+              </div>
+              <div>
+                <span className={`module-badge ${style.light} ${style.text} inline-block mb-1`}>
+                  Módulo {mod.number}
+                </span>
+                <h1 className="text-xl font-bold text-white">{lesson.title}</h1>
+              </div>
+            </div>
           </div>
+        </div>
+        <div className="dancheong-divider" />
 
-          <div className="space-y-3 mb-8">
+        <div className="max-w-2xl mx-auto px-4 py-6">
+          {lesson.subtitle && (
+            <p className="text-gray-500 text-sm mb-4 text-center">{lesson.subtitle}</p>
+          )}
+
+          <div className="space-y-3 mb-6">
             {lesson.content.map((item, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-2xl p-4 border border-border shadow-sm flex items-start gap-4"
-              >
-                <div className="flex-shrink-0 flex items-center gap-2">
-                  <span className={`text-3xl korean-char ${colors.text} font-bold`}>
+              <div key={i} className="k-card p-4 border border-[#0D1B4B]/08 flex items-start gap-4 fade-up"
+                style={{ animationDelay: `${i * 60}ms` }}>
+                <div className="flex-shrink-0 flex flex-col items-center gap-1.5">
+                  <span className={`text-3xl korean-char font-black ${style.text}`}>
                     {item.korean}
                   </span>
                   <SpeakButton text={item.korean} size="sm" />
                 </div>
                 <div className="flex-1">
-                  <p className={`font-semibold ${colors.text} text-sm`}>{item.romanization}</p>
-                  <p className="text-foreground font-medium">{item.meaning}</p>
+                  <p className={`text-xs font-bold uppercase tracking-wider ${style.text} mb-0.5`}>{item.romanization}</p>
+                  <p className="text-[#0D1B4B] font-semibold">{item.meaning}</p>
                   {item.example && (
-                    <div className="mt-1.5 flex items-center gap-2">
-                      <span className="korean-char text-muted-foreground text-sm">{item.example}</span>
-                      <span className="text-muted-foreground text-xs">→ {item.exampleMeaning}</span>
+                    <div className="mt-1.5 flex items-center gap-2 flex-wrap">
+                      <span className="korean-char text-gray-500 text-sm">{item.example}</span>
+                      <span className="text-gray-400 text-xs">→ {item.exampleMeaning}</span>
                       <SpeakButton text={item.example} size="sm" />
                     </div>
                   )}
                   {item.note && (
-                    <p className="text-xs text-muted-foreground mt-1 italic">💡 {item.note}</p>
+                    <p className="text-xs text-gray-400 mt-1 italic">💡 {item.note}</p>
                   )}
                 </div>
               </div>
@@ -97,11 +112,15 @@ export function LessonView() {
 
           <button
             onClick={() => setPhase("exercises")}
-            className={`w-full py-4 ${colors.bg} hover:opacity-90 text-white text-lg font-bold rounded-2xl transition-all active:scale-95 shadow-sm`}
+            className="w-full py-4 rounded-2xl font-bold text-white text-base transition-all active:scale-97"
+            style={{
+              background: `linear-gradient(135deg, ${style.barColor}, ${style.barColor}cc)`,
+              boxShadow: `0 4px 20px ${style.barColor}44`,
+            }}
           >
             ¡Practicar ahora! →
           </button>
-          <p className="text-center text-xs text-muted-foreground mt-3">
+          <p className="text-center text-xs text-gray-400 mt-2">
             {exercises.length} ejercicio{exercises.length !== 1 ? "s" : ""} en esta lección
           </p>
         </div>
@@ -109,7 +128,7 @@ export function LessonView() {
     );
   }
 
-  // ---- RESULT PHASE ----
+  // ── RESULT PHASE ──
   if (phase === "result") {
     const correct = answers.filter(Boolean).length;
     const total = answers.length;
@@ -117,27 +136,38 @@ export function LessonView() {
     const passed = score >= 60;
 
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#FAF7F2" }}>
         <div className="max-w-md w-full mx-4">
-          <div className="bg-white rounded-3xl p-8 border border-border shadow-sm text-center bounce-in">
+          <div className="k-card p-8 text-center bounce-in border border-[#0D1B4B]/10">
             <div className="text-6xl mb-4">{score === 100 ? "🏆" : passed ? "🎉" : "😅"}</div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-bold text-[#0D1B4B] mb-1">
               {score === 100 ? "¡Perfecto!" : passed ? "¡Bien hecho!" : "Sigue practicando"}
             </h2>
-            <p className="text-muted-foreground mb-6">
-              {correct} de {total} correctas
-            </p>
+            <p className="text-gray-500 mb-6">{correct} de {total} correctas</p>
 
-            <div className="mb-6">
-              <ProgressBar percentage={score} color={passed ? "bg-emerald-500" : "bg-orange-400"} height="h-4" />
-              <p className={`mt-2 text-2xl font-bold ${passed ? "text-emerald-600" : "text-orange-500"}`}>
-                {score}%
-              </p>
+            {/* Score ring */}
+            <div className="relative w-28 h-28 mx-auto mb-6">
+              <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#f0f0f0" strokeWidth="8" />
+                <circle
+                  cx="50" cy="50" r="40" fill="none"
+                  stroke={passed ? "#22c55e" : "#f59e0b"}
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeDasharray={`${score * 2.51} 251`}
+                  className="transition-all duration-700"
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className={`text-2xl font-black ${passed ? "text-emerald-600" : "text-amber-500"}`}>
+                  {score}%
+                </span>
+              </div>
             </div>
 
             {!passed && (
-              <p className="text-sm text-muted-foreground mb-4">
-                Necesitas al menos 60% para completar la lección. ¡Tú puedes!
+              <p className="text-sm text-gray-500 mb-4">
+                Necesitas al menos 60% para completar. ¡Tú puedes!
               </p>
             )}
 
@@ -147,7 +177,8 @@ export function LessonView() {
                   updateLessonProgress(mod.id, lesson.id, score);
                   navigate(`/module/${mod.id}`);
                 }}
-                className={`w-full py-3.5 ${colors.bg} text-white font-bold rounded-2xl hover:opacity-90 transition-all active:scale-95`}
+                className="w-full py-3.5 rounded-2xl font-bold text-white transition-all active:scale-97"
+                style={{ background: `linear-gradient(135deg, #0D1B4B, #1a2d6b)` }}
               >
                 {passed ? "✓ Guardar y continuar" : "Volver al módulo"}
               </button>
@@ -160,7 +191,7 @@ export function LessonView() {
                   setCurrentCorrect(null);
                   setMatchCompleted(false);
                 }}
-                className="w-full py-3.5 border-2 border-border text-foreground font-semibold rounded-2xl hover:bg-muted transition-all active:scale-95"
+                className="w-full py-3.5 border-2 border-[#0D1B4B]/15 text-[#0D1B4B] font-semibold rounded-2xl hover:bg-[#eef1ff] transition-all active:scale-97"
               >
                 🔄 Repetir ejercicios
               </button>
@@ -171,8 +202,8 @@ export function LessonView() {
     );
   }
 
-  // ---- EXERCISE PHASE ----
-  const progress = Math.round((exerciseIdx / exercises.length) * 100);
+  // ── EXERCISE PHASE ──
+  const progressPct = Math.round((exerciseIdx / exercises.length) * 100);
 
   function handleMCAnswer(correct: boolean) {
     setCurrentAnswered(true);
@@ -200,29 +231,31 @@ export function LessonView() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        {/* Header */}
+    <div className="min-h-screen" style={{ background: "#FAF7F2" }}>
+      <div className="max-w-2xl mx-auto px-4 py-6">
+        {/* Progress header */}
         <div className="flex items-center gap-3 mb-6">
           <button
             onClick={() => navigate(`/module/${mod.id}`)}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-gray-400 hover:text-[#0D1B4B] transition-colors text-xl w-8 h-8 flex items-center justify-center"
           >
             ✕
           </button>
-          <div className="flex-1">
-            <ProgressBar percentage={progress} color={colors.bg} height="h-2" />
+          <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${style.barColor}, ${style.barColor}99)` }}
+            />
           </div>
-          <span className="text-sm text-muted-foreground whitespace-nowrap">
+          <span className="text-sm font-bold text-[#0D1B4B] whitespace-nowrap">
             {exerciseIdx + 1}/{exercises.length}
           </span>
         </div>
 
         {/* Exercise card */}
-        <div className="bg-white rounded-3xl p-6 border border-border shadow-sm min-h-64">
-          {/* Badge */}
+        <div className="k-card p-6 border border-[#0D1B4B]/08 min-h-64">
           <div className="flex items-center gap-2 mb-4">
-            <span className={`text-xs font-semibold px-3 py-1 rounded-full ${colors.light} ${colors.text}`}>
+            <span className={`module-badge ${style.light} ${style.text}`}>
               {currentExercise.type === "multiple-choice" ? "Selección múltiple" : "Emparejar"}
             </span>
           </div>
@@ -231,28 +264,33 @@ export function LessonView() {
             <MultipleChoice
               exercise={currentExercise}
               onAnswer={handleMCAnswer}
+              accentColor={style.barColor}
             />
           )}
 
           {currentExercise.type === "matching" && currentExercise.items && (
             <div>
-              <p className="text-lg font-semibold text-foreground text-center mb-4">
+              <p className="text-base font-bold text-[#0D1B4B] text-center mb-4">
                 Empareja cada elemento con su significado
               </p>
               <MatchingGame
                 items={currentExercise.items}
                 onComplete={handleMatchComplete}
+                accentColor={style.barColor}
               />
             </div>
           )}
         </div>
 
-        {/* Next button */}
         {(currentAnswered || matchCompleted) && (
           <div className="mt-4 pop-in">
             <button
               onClick={goNext}
-              className={`w-full py-4 ${colors.bg} hover:opacity-90 text-white text-base font-bold rounded-2xl transition-all active:scale-95`}
+              className="w-full py-4 rounded-2xl font-bold text-white text-base transition-all active:scale-97"
+              style={{
+                background: `linear-gradient(135deg, ${style.barColor}, ${style.barColor}cc)`,
+                boxShadow: `0 4px 16px ${style.barColor}44`,
+              }}
             >
               {exerciseIdx + 1 >= exercises.length ? "Ver resultado →" : "Siguiente →"}
             </button>

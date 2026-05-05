@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "1zTwpJ-QT6-MQ2fO2yglD"
+uri = "file://artifacts/korean-learn/src/assets/logo.png"
+type = "image"
+title = "korean-learn-logo"
