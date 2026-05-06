@@ -12,6 +12,7 @@ const MODULE_STYLES = [
   { gradient: "from-[#C41E3A] to-[#a51830]", light: "bg-[#fff0f2]", text: "text-[#C41E3A]", border: "border-[#C41E3A]/20", dot: "bg-[#C41E3A]" },
   { gradient: "from-[#1a6b3a] to-[#145c30]", light: "bg-[#f0fdf4]", text: "text-[#1a6b3a]", border: "border-[#1a6b3a]/20", dot: "bg-[#1a6b3a]" },
   { gradient: "from-[#B8910A] to-[#9a7808]", light: "bg-[#fffbeb]", text: "text-[#B8910A]", border: "border-[#B8910A]/20", dot: "bg-[#B8910A]" },
+  { gradient: "from-[#c2460a] to-[#a83808]", light: "bg-[#fff7ed]", text: "text-[#c2460a]", border: "border-[#c2460a]/20", dot: "bg-[#c2460a]" },
 ];
 
 export function Home() {

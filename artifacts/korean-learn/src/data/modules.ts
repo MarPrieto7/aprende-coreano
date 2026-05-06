@@ -895,7 +895,236 @@ const module4: Module = {
   ],
 };
 
-export const MODULES: Module[] = [module1, module2, module3, module4];
+// ============================================================
+// MÓDULO 5 — Comida Coreana
+// ============================================================
+const module5: Module = {
+  id: "food",
+  number: 5,
+  title: "Comida Coreana",
+  description: "Platos típicos, ingredientes y cómo pedir en un restaurante coreano.",
+  emoji: "🍜",
+  color: "orange",
+  lessons: [
+    {
+      id: "dishes",
+      title: "Platos Típicos",
+      subtitle: "Los platos más famosos de la cocina coreana:",
+      content: [
+        { korean: "김치 (kimchi)", romanization: "kimchi", meaning: "Kimchi — col fermentada picante", note: "El plato más icónico de Corea. ¡Se come en casi todas las comidas!", example: "김치찌개", exampleMeaning: "estofado de kimchi" },
+        { korean: "비빔밥 (bibimbap)", romanization: "bibimbap", meaning: "Arroz mezclado con verduras y huevo", note: "비비다(mezclar) + 밥(arroz). ¡Se mezcla todo antes de comer!" },
+        { korean: "불고기 (bulgogi)", romanization: "bulgogi", meaning: "Carne de res marinada a la parrilla", note: "불(fuego) + 고기(carne). Una de las carnes más populares" },
+        { korean: "떡볶이 (tteokbokki)", romanization: "tteokbokki", meaning: "Pasteles de arroz en salsa picante", note: "El snack callejero más popular de Corea" },
+        { korean: "삼겹살 (samgyeopsal)", romanization: "samgyeopsal", meaning: "Panceta de cerdo a la parrilla", note: "삼겹(tres capas) + 살(carne). Se asa en la mesa y se come con lechuga" },
+        { korean: "냉면 (naengmyeon)", romanization: "naengmyeon", meaning: "Fideos fríos", note: "냉(frío) + 면(fideos). Perfecto para el verano" },
+        { korean: "순두부찌개 (sundubu jjigae)", romanization: "sundubu jjigae", meaning: "Estofado de tofu blando picante", note: "순두부(tofu blando) + 찌개(estofado)" },
+        { korean: "잡채 (japchae)", romanization: "japchae", meaning: "Fideos de batata salteados con verduras", note: "Plato festivo muy popular en celebraciones" },
+        { korean: "김밥 (gimbap)", romanization: "gimbap", meaning: "Rollos de arroz con alga marina", note: "김(alga) + 밥(arroz). Similar al sushi pero sin pescado crudo obligatorio" },
+        { korean: "치킨 (chikin)", romanization: "chikin", meaning: "Pollo frito coreano", note: "¡Del inglés 'chicken'! El pollo frito coreano es mundialmente famoso" },
+      ],
+      exercises: [
+        {
+          id: "f-mc-1",
+          type: "multiple-choice",
+          question: "¿Qué es el 비빔밥 (bibimbap)?",
+          options: [
+            { text: "Fideos fríos", correct: false },
+            { text: "Arroz mezclado con verduras y huevo", correct: true },
+            { text: "Carne a la parrilla", correct: false },
+            { text: "Estofado picante", correct: false },
+          ],
+          answer: "Arroz mezclado con verduras y huevo",
+        },
+        {
+          id: "f-mc-2",
+          type: "multiple-choice",
+          question: "¿Cuál es el snack callejero más popular de Corea?",
+          options: [
+            { text: "김밥", correct: false },
+            { text: "불고기", correct: false },
+            { text: "떡볶이", correct: true },
+            { text: "냉면", correct: false },
+          ],
+          answer: "떡볶이",
+        },
+        {
+          id: "f-mc-3",
+          type: "multiple-choice",
+          question: "¿Qué significa 불고기 literalmente?",
+          options: [
+            { text: "Arroz con fuego", correct: false },
+            { text: "Carne de fuego", correct: true },
+            { text: "Verdura caliente", correct: false },
+            { text: "Sopa de carne", correct: false },
+          ],
+          answer: "Carne de fuego",
+        },
+        {
+          id: "f-match-1",
+          type: "matching",
+          items: [
+            { left: "김치", right: "Col fermentada" },
+            { left: "비빔밥", right: "Arroz mezclado" },
+            { left: "삼겹살", right: "Panceta a la parrilla" },
+            { left: "냉면", right: "Fideos fríos" },
+          ],
+        },
+        {
+          id: "f-match-2",
+          type: "matching",
+          items: [
+            { left: "불고기", right: "Carne marinada" },
+            { left: "떡볶이", right: "Pasteles de arroz picantes" },
+            { left: "김밥", right: "Rollos de alga y arroz" },
+            { left: "치킨", right: "Pollo frito" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "ingredients",
+      title: "Ingredientes Básicos",
+      subtitle: "Los ingredientes que encontrarás en casi toda la cocina coreana:",
+      content: [
+        { korean: "밥", romanization: "bap", meaning: "Arroz cocido", note: "La base de casi todas las comidas coreanas. '밥 먹었어요?' (¿Has comido?) es un saludo cotidiano" },
+        { korean: "고기", romanization: "gogi", meaning: "Carne", note: "소고기(sogogi)=res, 돼지고기(dwaeji)=cerdo, 닭고기(dak)=pollo" },
+        { korean: "채소", romanization: "chaeso", meaning: "Verduras", example: "채소 많이 드세요", exampleMeaning: "Come muchas verduras" },
+        { korean: "두부", romanization: "dubu", meaning: "Tofu", note: "Ingrediente muy común en estofados coreanos" },
+        { korean: "고추장", romanization: "gochujang", meaning: "Pasta de chile rojo fermentada", note: "La salsa más importante de la cocina coreana. ¡Es la base del sabor picante!" },
+        { korean: "된장", romanization: "doenjang", meaning: "Pasta de soja fermentada", note: "Como el miso japonés pero con sabor más fuerte" },
+        { korean: "간장", romanization: "ganjang", meaning: "Salsa de soja", example: "간장 넣어요", exampleMeaning: "Le pongo salsa de soja" },
+        { korean: "참기름", romanization: "chamgireum", meaning: "Aceite de sésamo", note: "Da el sabor característico a muchos platos coreanos" },
+        { korean: "마늘", romanization: "maneul", meaning: "Ajo", note: "Corea es uno de los mayores consumidores de ajo del mundo" },
+        { korean: "파", romanization: "pa", meaning: "Cebolla verde / cebollino", example: "파김치", exampleMeaning: "kimchi de cebollino" },
+      ],
+      exercises: [
+        {
+          id: "fi-mc-1",
+          type: "multiple-choice",
+          question: "¿Cuál es la salsa picante más importante de la cocina coreana?",
+          options: [
+            { text: "간장", correct: false },
+            { text: "된장", correct: false },
+            { text: "고추장", correct: true },
+            { text: "참기름", correct: false },
+          ],
+          answer: "고추장",
+        },
+        {
+          id: "fi-mc-2",
+          type: "multiple-choice",
+          question: "¿Qué significa '밥'?",
+          options: [
+            { text: "Sopa", correct: false },
+            { text: "Arroz cocido", correct: true },
+            { text: "Pan", correct: false },
+            { text: "Fideos", correct: false },
+          ],
+          answer: "Arroz cocido",
+        },
+        {
+          id: "fi-match-1",
+          type: "matching",
+          items: [
+            { left: "두부", right: "Tofu" },
+            { left: "마늘", right: "Ajo" },
+            { left: "간장", right: "Salsa de soja" },
+            { left: "고기", right: "Carne" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "restaurant",
+      title: "En el Restaurante",
+      subtitle: "Frases esenciales para pedir comida en un restaurante coreano:",
+      content: [
+        { korean: "메뉴 주세요", romanization: "menyu juseyo", meaning: "La carta, por favor", note: "메뉴 = menú (del inglés), 주세요 = por favor / deme" },
+        { korean: "이거 주세요", romanization: "igeo juseyo", meaning: "Esto, por favor", note: "이거 = esto. Señala y di 이거 주세요 para pedir algo del menú" },
+        { korean: "얼마예요?", romanization: "eolmayeyo?", meaning: "¿Cuánto cuesta?", note: "Siempre útil antes de pedir" },
+        { korean: "맵지 않게 해주세요", romanization: "maepji ange haejuseyo", meaning: "Sin picante, por favor", note: "맵다 = picante. ¡Muy importante si no aguantas el picante!" },
+        { korean: "맛있어요!", romanization: "massisseoyo!", meaning: "¡Está delicioso!", note: "Elogio que los coreanos adoran escuchar" },
+        { korean: "물 주세요", romanization: "mul juseyo", meaning: "Agua, por favor", note: "En Corea el agua suele ser gratis en restaurantes" },
+        { korean: "하나 더 주세요", romanization: "hana deo juseyo", meaning: "Uno más, por favor", note: "En muchos restaurantes los 반찬(banchan/acompañamientos) son gratis y recargables" },
+        { korean: "계산서 주세요", romanization: "gyesanseo juseyo", meaning: "La cuenta, por favor" },
+        { korean: "포장해 주세요", romanization: "pojanghae juseyo", meaning: "Para llevar, por favor", note: "포장 = empaquetar. Para pedir comida para llevar" },
+        { korean: "맛집이에요!", romanization: "matjibiéyo!", meaning: "¡Es un restaurante delicioso!", note: "맛집 = restaurante famoso por su comida. Muy usado en redes sociales coreanas" },
+      ],
+      exercises: [
+        {
+          id: "fr-mc-1",
+          type: "multiple-choice",
+          question: "¿Cómo pides la carta en un restaurante coreano?",
+          options: [
+            { text: "계산서 주세요", correct: false },
+            { text: "물 주세요", correct: false },
+            { text: "메뉴 주세요", correct: true },
+            { text: "이거 주세요", correct: false },
+          ],
+          answer: "메뉴 주세요",
+        },
+        {
+          id: "fr-mc-2",
+          type: "multiple-choice",
+          question: "¿Cómo dices '¡Está delicioso!'?",
+          options: [
+            { text: "맵지 않게 해주세요", correct: false },
+            { text: "맛있어요!", correct: true },
+            { text: "포장해 주세요", correct: false },
+            { text: "얼마예요?", correct: false },
+          ],
+          answer: "맛있어요!",
+        },
+        {
+          id: "fr-mc-3",
+          type: "multiple-choice",
+          question: "¿Qué significa '맵지 않게 해주세요'?",
+          options: [
+            { text: "Más picante, por favor", correct: false },
+            { text: "La cuenta, por favor", correct: false },
+            { text: "Sin picante, por favor", correct: true },
+            { text: "Para llevar, por favor", correct: false },
+          ],
+          answer: "Sin picante, por favor",
+        },
+        {
+          id: "fr-mc-4",
+          type: "multiple-choice",
+          question: "¿Cómo pides la cuenta?",
+          options: [
+            { text: "계산서 주세요", correct: true },
+            { text: "물 주세요", correct: false },
+            { text: "메뉴 주세요", correct: false },
+            { text: "하나 더 주세요", correct: false },
+          ],
+          answer: "계산서 주세요",
+        },
+        {
+          id: "fr-match-1",
+          type: "matching",
+          items: [
+            { left: "메뉴 주세요", right: "La carta, por favor" },
+            { left: "맛있어요", right: "¡Está delicioso!" },
+            { left: "포장해 주세요", right: "Para llevar" },
+            { left: "계산서 주세요", right: "La cuenta" },
+          ],
+        },
+        {
+          id: "fr-match-2",
+          type: "matching",
+          items: [
+            { left: "이거 주세요", right: "Esto, por favor" },
+            { left: "물 주세요", right: "Agua, por favor" },
+            { left: "얼마예요?", right: "¿Cuánto cuesta?" },
+            { left: "하나 더 주세요", right: "Uno más" },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const MODULES: Module[] = [module1, module2, module3, module4, module5];
 
 export const MODULE_COLORS: Record<string, { bg: string; text: string; border: string; light: string }> = {
   purple: {
@@ -921,5 +1150,11 @@ export const MODULE_COLORS: Record<string, { bg: string; text: string; border: s
     text: "text-pink-500",
     border: "border-pink-200",
     light: "bg-pink-50",
+  },
+  orange: {
+    bg: "bg-orange-500",
+    text: "text-orange-600",
+    border: "border-orange-200",
+    light: "bg-orange-50",
   },
 };
