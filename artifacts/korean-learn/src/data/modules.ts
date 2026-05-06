@@ -1124,7 +1124,226 @@ const module5: Module = {
   ],
 };
 
-export const MODULES: Module[] = [module1, module2, module3, module4, module5];
+// ============================================================
+// MÓDULO 6 — Cultura Coreana: K-drama, K-pop y Vida Cotidiana
+// ============================================================
+const module6: Module = {
+  id: "culture",
+  number: 6,
+  title: "Cultura Coreana",
+  description: "K-drama, K-pop, expresiones de internet y vocabulario de la vida cotidiana coreana.",
+  emoji: "🎤",
+  color: "violet",
+  lessons: [
+    {
+      id: "kdrama",
+      title: "Expresiones de K-Drama",
+      subtitle: "Las palabras y frases que más escucharás en las series coreanas:",
+      content: [
+        { korean: "오빠 (oppa)", romanization: "oppa", meaning: "Hermano mayor (dicho por una chica)", note: "Las chicas lo dicen a chicos mayores que conocen. En K-dramas es muy común como término cariñoso" },
+        { korean: "언니 (unni)", romanization: "unni", meaning: "Hermana mayor (dicho por una chica)", note: "Como 오빠 pero entre chicas. 오빠/언니/형/누나 son los 4 términos según quién habla" },
+        { korean: "형 (hyeong)", romanization: "hyeong", meaning: "Hermano mayor (dicho por un chico)", note: "Un chico lo usa para referirse a un hombre mayor con confianza" },
+        { korean: "누나 (nuna)", romanization: "nuna", meaning: "Hermana mayor (dicho por un chico)", note: "Un chico lo usa para referirse a una mujer mayor con confianza" },
+        { korean: "대박! (daebak)", romanization: "daebak!", meaning: "¡Increíble! / ¡Impresionante!", note: "Expresión de asombro positivo. Equivale a '¡Brutal!' o '¡Qué fuerte!'" },
+        { korean: "화이팅! (hwaiting)", romanization: "hwaiting!", meaning: "¡Ánimo! / ¡Tú puedes!", note: "Del inglés 'fighting'. Se usa para dar aliento antes de algo difícil" },
+        { korean: "아이고 (aigo)", romanization: "aigo", meaning: "¡Ay! / ¡Dios mío!", note: "Exclamación de sorpresa, disgusto o cansancio. ¡La dicen los personajes todo el tiempo!" },
+        { korean: "미쳤어? (michyeosseo?)", romanization: "michyeosseo?", meaning: "¿Estás loco/a?", note: "미치다 = volverse loco. En dramas se dice con sorpresa o incredulidad" },
+        { korean: "진짜요? (jinjjayo?)", romanization: "jinjjayo?", meaning: "¿De verdad? / ¿En serio?", note: "진짜 = verdad/real. Equivale a '¿En serio?' en conversación cotidiana" },
+        { korean: "사랑해 (saranghae)", romanization: "saranghae", meaning: "Te quiero / Te amo", note: "La frase más famosa del K-drama. 사랑해요 es la versión formal" },
+        { korean: "보고 싶어 (bogo sipeo)", romanization: "bogo sipeo", meaning: "Te echo de menos", note: "보다(ver) + 싶다(querer). Literalmente: 'quiero verte'" },
+        { korean: "괜찮아? (gwaenchana?)", romanization: "gwaenchana?", meaning: "¿Estás bien?", note: "괜찮다 = estar bien. Con 요 es formal: 괜찮아요?" },
+      ],
+      exercises: [
+        {
+          id: "kd-mc-1",
+          type: "multiple-choice",
+          question: "¿Qué significa '오빠' cuando lo dice una chica?",
+          options: [
+            { text: "Hermana mayor", correct: false },
+            { text: "Hermano mayor", correct: true },
+            { text: "Novio", correct: false },
+            { text: "Amigo", correct: false },
+          ],
+          answer: "Hermano mayor",
+        },
+        {
+          id: "kd-mc-2",
+          type: "multiple-choice",
+          question: "¿Cómo se dice '¡Ánimo!' en coreano?",
+          options: [
+            { text: "대박!", correct: false },
+            { text: "아이고!", correct: false },
+            { text: "화이팅!", correct: true },
+            { text: "진짜요?", correct: false },
+          ],
+          answer: "화이팅!",
+        },
+        {
+          id: "kd-mc-3",
+          type: "multiple-choice",
+          question: "¿Qué significa '보고 싶어'?",
+          options: [
+            { text: "Te quiero", correct: false },
+            { text: "¿Estás bien?", correct: false },
+            { text: "¡Increíble!", correct: false },
+            { text: "Te echo de menos", correct: true },
+          ],
+          answer: "Te echo de menos",
+        },
+        {
+          id: "kd-match-1",
+          type: "matching",
+          items: [
+            { left: "대박!", right: "¡Increíble!" },
+            { left: "아이고", right: "¡Ay, dios mío!" },
+            { left: "사랑해", right: "Te quiero" },
+            { left: "괜찮아?", right: "¿Estás bien?" },
+          ],
+        },
+        {
+          id: "kd-match-2",
+          type: "matching",
+          items: [
+            { left: "오빠", right: "Hno. mayor (dicho por chica)" },
+            { left: "언니", right: "Hna. mayor (dicho por chica)" },
+            { left: "형", right: "Hno. mayor (dicho por chico)" },
+            { left: "누나", right: "Hna. mayor (dicho por chico)" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "kpop",
+      title: "Vocabulario K-Pop",
+      subtitle: "Términos esenciales del mundo del K-pop que todo fan debería saber:",
+      content: [
+        { korean: "아이돌 (idol)", romanization: "aidol", meaning: "Ídolo / cantante de K-pop", note: "Del inglés 'idol'. Los artistas de K-pop se llaman 아이돌" },
+        { korean: "팬 (fan)", romanization: "paen", meaning: "Fan", note: "Del inglés 'fan'. 팬덤(fandom) es la comunidad de fans" },
+        { korean: "팬덤 (fandom)", romanization: "paendeom", meaning: "Fandom / comunidad de fans", note: "Cada grupo tiene un nombre oficial para su fandom (ARMY para BTS, BLINK para BLACKPINK...)" },
+        { korean: "뮤직비디오 (MV)", romanization: "myujik bidio", meaning: "Videoclip / MV", note: "Abreviado como MV. Los fans dicen '뮤비(myubi)' coloquialmente" },
+        { korean: "컴백 (comeback)", romanization: "keombaek", meaning: "Regreso / nuevo álbum", note: "Del inglés 'comeback'. Cuando un grupo lanza nueva música se llama 컴백" },
+        { korean: "데뷔 (debut)", romanization: "debwi", meaning: "Debut / primera aparición", note: "Del francés/inglés 'debut'. El día que un grupo debuta es muy importante" },
+        { korean: "안무 (anmu)", romanization: "anmu", meaning: "Coreografía / baile", note: "Los K-pop idols son famosos por sus coreografías precisas" },
+        { korean: "성적 (seongjeok)", romanization: "seongjeok", meaning: "Resultado / ranking de charts", note: "Los fans hacen streaming para mejorar la 성적 de sus grupos" },
+        { korean: "응원봉 (eunghwanbong)", romanization: "eunghwanbong", meaning: "Light stick / palito de luz", note: "Cada grupo tiene su propio 응원봉 oficial con forma y color únicos" },
+        { korean: "직캠 (jikkaem)", romanization: "jikkaem", meaning: "Fancam / vídeo de fan", note: "직 = directo + cam. Vídeos enfocados en un solo miembro durante actuaciones" },
+      ],
+      exercises: [
+        {
+          id: "kp-mc-1",
+          type: "multiple-choice",
+          question: "¿Qué es un '컴백' en K-pop?",
+          options: [
+            { text: "El debut de un grupo nuevo", correct: false },
+            { text: "El regreso de un grupo con nueva música", correct: true },
+            { text: "Una gira de conciertos", correct: false },
+            { text: "Un vídeo de fans", correct: false },
+          ],
+          answer: "El regreso de un grupo con nueva música",
+        },
+        {
+          id: "kp-mc-2",
+          type: "multiple-choice",
+          question: "¿Cómo se llama la coreografía en coreano?",
+          options: [
+            { text: "팬덤", correct: false },
+            { text: "직캠", correct: false },
+            { text: "안무", correct: true },
+            { text: "응원봉", correct: false },
+          ],
+          answer: "안무",
+        },
+        {
+          id: "kp-match-1",
+          type: "matching",
+          items: [
+            { left: "아이돌", right: "Cantante K-pop" },
+            { left: "뮤직비디오", right: "Videoclip" },
+            { left: "데뷔", right: "Debut" },
+            { left: "직캠", right: "Fancam" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "internet-slang",
+      title: "Jerga de Internet y Redes",
+      subtitle: "El coreano que usan los jóvenes en chats, comentarios y redes sociales:",
+      content: [
+        { korean: "ㅋㅋㅋ (kkk)", romanization: "kk kk", meaning: "jajaja (risa)", note: "ㅋ es la inicial de 크크 (risa). Cuantas más ㅋ, más gracioso. Equivale a 'jajaja'" },
+        { korean: "ㅎㅎ (hh)", romanization: "hh", meaning: "hehe (risa suave)", note: "ㅎ es la inicial de 하하. Risa más suave y amigable que ㅋㅋ" },
+        { korean: "ㄱㅅ (gamsahada)", romanization: "gamsahamnida abrev.", meaning: "Gracias (abreviatura)", note: "Abreviatura de 감사합니다. Se usa en chats de manera informal" },
+        { korean: "ㅇㅇ (eung)", romanization: "eung eung", meaning: "Sí / ajá (informal)", note: "Abreviatura de 응응. Respuesta informal para decir que sí o que entiendes" },
+        { korean: "셀카 (selca)", romanization: "selka", meaning: "Selfie", note: "De 'self camera'. ¡Los coreanos inventaron la cultura del selfie antes que el resto!" },
+        { korean: "맞팔 (matpal)", romanization: "matpal", meaning: "Seguirse mutuamente (en redes)", note: "맞(mutuo) + 팔로우(follow). '맞팔해요?' = '¿Nos seguimos?'" },
+        { korean: "취저 (chwi-jeo)", romanization: "chwijeo", meaning: "Favorito / lo mejor", note: "De 취향저격 (disparo a la preferencia). Cuando algo te encanta perfectamente" },
+        { korean: "꿀잼 (kkul-jaem)", romanization: "kkuljaem", meaning: "Súper divertido / buenísimo", note: "꿀(miel) + 재미(diversión). Algo muy entretenido. Lo contrario: 노잼(no jaem = sin gracia)" },
+        { korean: "레전드 (legend)", romanization: "lejendeu", meaning: "Legendario / épico", note: "Del inglés 'legend'. Algo que quedará en la memoria: '레전드 무대' = actuación legendaria" },
+        { korean: "헉 (heok)", romanization: "heok", meaning: "¡Vaya! / ¡Oh! (sorpresa)", note: "Exclamación de sorpresa, como un 'oh' o '¡ostras!'. Muy común en comentarios" },
+      ],
+      exercises: [
+        {
+          id: "is-mc-1",
+          type: "multiple-choice",
+          question: "¿Qué significa 'ㅋㅋㅋ' en un chat coreano?",
+          options: [
+            { text: "Estoy triste", correct: false },
+            { text: "Jajaja (risa)", correct: true },
+            { text: "De acuerdo", correct: false },
+            { text: "No entiendo", correct: false },
+          ],
+          answer: "Jajaja (risa)",
+        },
+        {
+          id: "is-mc-2",
+          type: "multiple-choice",
+          question: "¿Qué es una '셀카'?",
+          options: [
+            { text: "Una fancam", correct: false },
+            { text: "Un selfie", correct: true },
+            { text: "Un vídeo de baile", correct: false },
+            { text: "Un comentario en redes", correct: false },
+          ],
+          answer: "Un selfie",
+        },
+        {
+          id: "is-mc-3",
+          type: "multiple-choice",
+          question: "Si alguien dice '꿀잼', ¿qué quiere decir?",
+          options: [
+            { text: "Qué aburrido", correct: false },
+            { text: "Qué nervios", correct: false },
+            { text: "Súper divertido", correct: true },
+            { text: "Qué raro", correct: false },
+          ],
+          answer: "Súper divertido",
+        },
+        {
+          id: "is-match-1",
+          type: "matching",
+          items: [
+            { left: "ㅋㅋㅋ", right: "Jajaja" },
+            { left: "셀카", right: "Selfie" },
+            { left: "꿀잼", right: "Súper divertido" },
+            { left: "레전드", right: "Legendario" },
+          ],
+        },
+        {
+          id: "is-match-2",
+          type: "matching",
+          items: [
+            { left: "ㄱㅅ", right: "Gracias (abrev.)" },
+            { left: "맞팔", right: "Seguirse mutuamente" },
+            { left: "취저", right: "Favorito / lo mejor" },
+            { left: "헉", right: "¡Oh! (sorpresa)" },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const MODULES: Module[] = [module1, module2, module3, module4, module5, module6];
 
 export const MODULE_COLORS: Record<string, { bg: string; text: string; border: string; light: string }> = {
   purple: {
@@ -1156,5 +1375,11 @@ export const MODULE_COLORS: Record<string, { bg: string; text: string; border: s
     text: "text-orange-600",
     border: "border-orange-200",
     light: "bg-orange-50",
+  },
+  violet: {
+    bg: "bg-violet-600",
+    text: "text-violet-600",
+    border: "border-violet-200",
+    light: "bg-violet-50",
   },
 };

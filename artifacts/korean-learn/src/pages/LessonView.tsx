@@ -17,6 +17,7 @@ const MODULE_STYLES = [
   { gradient: "from-[#1a6b3a] to-[#145c30]", light: "bg-[#f0fdf4]", text: "text-[#1a6b3a]", barColor: "#1a6b3a", btn: "bg-[#1a6b3a] hover:bg-[#145c30]" },
   { gradient: "from-[#B8910A] to-[#9a7808]", light: "bg-[#fffbeb]", text: "text-[#B8910A]", barColor: "#B8910A", btn: "bg-[#B8910A] hover:bg-[#9a7808]" },
   { gradient: "from-[#c2460a] to-[#a83808]", light: "bg-[#fff7ed]", text: "text-[#c2460a]", barColor: "#c2460a", btn: "bg-[#c2460a] hover:bg-[#a83808]" },
+  { gradient: "from-[#6d28d9] to-[#5b21b6]", light: "bg-[#f5f3ff]", text: "text-[#6d28d9]", barColor: "#6d28d9", btn: "bg-[#6d28d9] hover:bg-[#5b21b6]" },
 ];
 
 export function LessonView() {

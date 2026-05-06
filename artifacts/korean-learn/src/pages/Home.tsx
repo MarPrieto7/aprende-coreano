@@ -13,6 +13,7 @@ const MODULE_STYLES = [
   { gradient: "from-[#1a6b3a] to-[#145c30]", light: "bg-[#f0fdf4]", text: "text-[#1a6b3a]", border: "border-[#1a6b3a]/20", dot: "bg-[#1a6b3a]" },
   { gradient: "from-[#B8910A] to-[#9a7808]", light: "bg-[#fffbeb]", text: "text-[#B8910A]", border: "border-[#B8910A]/20", dot: "bg-[#B8910A]" },
   { gradient: "from-[#c2460a] to-[#a83808]", light: "bg-[#fff7ed]", text: "text-[#c2460a]", border: "border-[#c2460a]/20", dot: "bg-[#c2460a]" },
+  { gradient: "from-[#6d28d9] to-[#5b21b6]", light: "bg-[#f5f3ff]", text: "text-[#6d28d9]", border: "border-[#6d28d9]/20", dot: "bg-[#6d28d9]" },
 ];
 
 export function Home() {

@@ -15,7 +15,7 @@ interface ReviewCard {
   moduleColor: string;
 }
 
-const MODULE_COLORS = ["#0D1B4B", "#C41E3A", "#1a6b3a", "#B8910A", "#c2460a"];
+const MODULE_COLORS = ["#0D1B4B", "#C41E3A", "#1a6b3a", "#B8910A", "#c2460a", "#6d28d9"];
 
 function buildReviewCards(): ReviewCard[] {
   const cards: ReviewCard[] = [];
